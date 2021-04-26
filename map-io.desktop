@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Map I/O
+Comment=Restrict a chosen input to a single display
+Exec=/usr/bin/map-io
+Type=Application
+Categories=Utility;
+Encoding=UTF-8
+Terminal=false
