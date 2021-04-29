@@ -1,33 +1,24 @@
 #!/usr/bin/env bash
 
-FORM="$(yad \
+function map_io {
+  DEVICE="$(awk '{print $1}' <<< "$1")"
+  MONITOR="$2"
+  xinput map-to-output "$DEVICE" "$MONITOR"
+}
+
+export -f map_io
+
+yad \
   --form \
   --title 'Map Input to Display' \
-  --item-separator '\n' \
-  --width '600' \
-  --height '800' \
   --center \
   --focus-field '1' \
   --align 'left' \
   --field \
-    'Input::CB' \
-    "$(paste <(xinput list --id-only) <(xinput list --name-only))" \
+    'Input:':CB \
+    "$(paste <(xinput list --id-only) <(xinput list --name-only) | sort -n |  tr '\n' '!' | head -c -1)" \
   --field \
-    'Output::CB' \
-    "$(xrandr --listmonitors | awk -e 'NR != 1 { print $NF }')"
-)"
-
-if [ "$?" != "0" ]; then
-  echo "operation cancelled" >& 2
-  exit 1
-fi
-
-DEVICE="$(awk -F '|' '{print $1}' <<< "$FORM" | awk '{print $1}')"
-MONITOR="$(awk -F '|' '{print $2}' <<< "$FORM" | awk '{print $NF}')"
-
-unset FORM
-
-xinput map-to-output "$DEVICE" "$MONITOR"
-
-unset DEVICE MONITOR
-
+    'Output:':CB \
+    "$(xrandr --listmonitors | awk -e 'NR != 1 { print $NF }' | sort | tr '\n' '!' | head -c -1)"  \
+  --field "Apply!gtk-ok:BTN" 'bash -c "map_io %1 %2"' \
+  --button "Close" "0" > /dev/null

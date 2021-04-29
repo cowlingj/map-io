@@ -1,2 +1,4 @@
 dist
-
+/src
+/pkg
+/*.pkg.tar.xz
