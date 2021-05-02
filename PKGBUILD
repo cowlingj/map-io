@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Cowling <09cowlingj@gmail.com>
 pkgname=map-io
-pkgver=1.0.2
+pkgver=1.0.3
 pkgrel=1
 epoch=
 pkgdesc="Restrict a chosen input to a single display"
