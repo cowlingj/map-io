@@ -1,0 +1,6 @@
+dist
+/src
+/pkg
+/*.pkg.tar.xz
+man.*
+!man.md
