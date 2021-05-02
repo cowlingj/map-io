@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: docker build -t arch .
-    - run: docker run -v $(pwd):/home/arch/mount arch cd mount '&&' make arch '&&' which map-io
+    - run: docker run -v $(pwd):/home/arch/mount arch bash -c 'cd mount && make arch && which map-io'
