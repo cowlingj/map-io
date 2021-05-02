@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Cowling <09cowlingj@gmail.com>
 pkgname=map-io
-pkgver=1.0.1
+pkgver=1.0.2
 pkgrel=1
 epoch=
 pkgdesc="Restrict a chosen input to a single display"
@@ -11,8 +11,14 @@ groups=()
 depends=(
   "bash"
   "yad"
+  "xorg-xrandr"
+  "xorg-xinput"
 )
-makedepends=()
+makedepends=(
+  "make"
+  "ruby-ronn-ng"
+  "gzip"
+)
 checkdepends=()
 optdepends=()
 provides=()
@@ -22,16 +28,21 @@ backup=()
 options=()
 install=
 changelog=
-source=("$pkgname.sh"
-        "$pkgname.desktop")
+source=(
+  "https://github.com/cowlingj/$pkgname/tarball/$pkgver"
+)
 noextract=()
 validpgpkeys=()
-md5sums=('bf76faa135c4ec33e3d1ac37b927378c'
-         '2ec1983b316bf651accc3a870bde23b6')
+md5sums=('cd100b785537ace274863964b28d7270'
+         '2ec1983b316bf651accc3a870bde23b6'
+         '86bfa33509898a2bdb7619bbf2d91666')
+
+build() {
+  cd "$pkgname-$pkgver"
+  make build
+}
 
 package() {
-  # mkdir -p "$pkgdir/usr/bin/" "$pkgdir/usr/share/applications/"
-  install -D -t "$pkgdir/usr/bin/$pkgname" "$pkgname.sh"
-  install -D -t "$pkgdir/usr/share/applications/" "$pkgname.desktop"
+  make install
 }
 
