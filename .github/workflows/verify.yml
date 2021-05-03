@@ -18,6 +18,7 @@ jobs:
     - run: |
         docker run \
           -v $(pwd):/home/arch \
+          -v /tmp:/tmp \
           -e BUILDDIR="$BUILDDIR" \
           -e PKGDEST="$PKGDEST" \
           -e SRCDEST="$SRCDEST" \
