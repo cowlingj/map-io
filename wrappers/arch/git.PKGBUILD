@@ -46,3 +46,8 @@ package() {
   make PKGDIR="$pkgdir" install
 }
 
+pkgver() {
+  cd "$pkgname"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+

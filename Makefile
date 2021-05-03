@@ -8,7 +8,7 @@ build:
 	ronn -r man.md --pipe | gzip - > "$(PKGNAME).1.gz"
 
 install:
-	install -D -t "$(PKGDIR)/usr/share/man/uk/man1/" "$(PKGNAME).1.gz" 
+	install -D -t "$(PKGDIR)/usr/share/man/man1/" "$(PKGNAME).1.gz" 
 	install -D -T "$(PKGNAME).sh" "$(PKGDIR)/usr/bin/$(PKGNAME)"
 	install -D -t "$(PKGDIR)/usr/share/applications/" "$(PKGNAME).desktop"
 

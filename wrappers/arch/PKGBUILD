@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Cowling <09cowlingj@gmail.com>
 pkgname=map-io
-pkgver=1.0.9
+pkgver=1.1.0
 pkgrel=1
 epoch=
 pkgdesc="Restrict a chosen input to a single display"
@@ -45,4 +45,3 @@ package() {
   cd "$pkgname-$pkgver"
   make PKGDIR="$pkgdir" install
 }
-
