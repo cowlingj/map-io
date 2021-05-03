@@ -11,4 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: make arch-docker-build
-    - run: docker run -v $(pwd):/home/arch/mount arch bash -c 'cd mount && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
+    - run: docker run arch bash -c 'cd mount && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
