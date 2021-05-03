@@ -23,4 +23,4 @@ jobs:
           -e PKGDEST="$PKGDEST" \
           -e SRCDEST="$SRCDEST" \
           arch \
-          bash -c 'make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
+          bash -c 'env && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
