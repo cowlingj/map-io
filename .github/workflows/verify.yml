@@ -5,7 +5,10 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pkgbuild: [ PKGBUILD, git.PKGBUILD ]
     steps:
     - uses: actions/checkout@v1
     - run: docker build -t arch .
-    - run: docker run -v $(pwd):/home/arch/mount arch bash -c 'cd mount && make arch && which map-io'
+    - run: docker run -v $(pwd):/home/arch/mount arch bash -c 'cd mount && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch && which map-io'

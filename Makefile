@@ -20,9 +20,11 @@ arch-docker-build:
 arch-checksum:
 	cd wrappers/arch/; updpkgsums
 
+
+ARCH_PKGBUILD=PKGBUILD
 arch-install:
 	-rm wrappers/arch/$(PKGNAME)*.tar.gz
-	cd wrappers/arch/; makepkg -Ccfirs --noconfirm
+	cd wrappers/arch/; makepkg -Ccfirs --noconfirm -p $(ARCH_PKGBUILD)
 
 run:
 	./map-io.sh
