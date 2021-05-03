@@ -17,10 +17,10 @@ jobs:
         echo SRCDEST=/tmp/$(mktemp -d src.XXXXXXXXXX) >> $GITHUB_ENV
     - run: |
         docker run \
-          -v $(pwd):/home/arch \
           -v /tmp:/tmp \
+          -v $(pwd):/home/arch/mount \
           -e BUILDDIR="$BUILDDIR" \
           -e PKGDEST="$PKGDEST" \
           -e SRCDEST="$SRCDEST" \
           arch \
-          bash -c 'env && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
+          bash -c 'cd mount && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'

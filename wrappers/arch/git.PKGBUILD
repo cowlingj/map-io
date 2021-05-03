@@ -43,6 +43,6 @@ build() {
 
 package() {
   cd "$pkgname-$pkgver"
-  make install
+  make PKGDIR="$pkgdir" install
 }
 
