@@ -12,7 +12,7 @@ install:
 	install -D -T "$(PKGNAME).sh" "$(PKGDIR)/usr/bin/$(PKGNAME)"
 	install -D -t "$(PKGDIR)/usr/share/applications/" "$(PKGNAME).desktop"
 
-arch: arch-docker-build arch-install
+arch: build arch-docker-build arch-install
 
 arch-docker-build:
 	docker build -t arch wrappers/arch/ 
