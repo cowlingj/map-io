@@ -6,6 +6,7 @@ PKGDIR=pkg
 
 build:
 	ronn -r man.md --pipe | gzip - > "$(PKGNAME).1.gz"
+	ls
 
 install:
 	install -D "$(PKGNAME).1.gz" "/usr/share/man/uk/man1/" 
