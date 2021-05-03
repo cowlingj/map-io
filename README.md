@@ -8,7 +8,7 @@ Restrict a chosen input to a single display
 
 Install map-io from source with `make build && make install`
 The following distros have packages available:
-- Arch (WIP), PKGBUILD
+- Arch (WIP), PKGBUILD (Use `make arch-install`)
 
 ## Usage
 
