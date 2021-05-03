@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Cowling <09cowlingj@gmail.com>
 pkgname=map-io-git
-pkgver=1.0.4
+pkgver=1.1.1
 pkgrel=1
 epoch=
 pkgdesc="Restrict a chosen input to a single display"
@@ -30,19 +30,19 @@ options=()
 install=
 changelog=
 source=(
-  "$pkgname-$pkgver::git+https://github.com/cowlingj/map-io"
+  "$pkgname::git+https://github.com/cowlingj/map-io"
 )
 noextract=()
 validpgpkeys=()
 md5sums=('SKIP')
 
 build() {
-  cd "$pkgname-$pkgver"
+  cd "$pkgname"
   make build 
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$pkgname"
   make PKGDIR="$pkgdir" install
 }
 
