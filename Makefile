@@ -9,7 +9,7 @@ build:
 	ls
 
 install:
-	install -D "$(PKGNAME).1.gz" "/usr/share/man/uk/man1/" 
+	install -D -t "/usr/share/man/uk/man1/" "$(PKGNAME).1.gz" 
 	install -D -T "$(PKGNAME).sh" "$(PKGDIR)/usr/bin/$(PKGNAME)"
 	install -D -t "$(PKGDIR)/usr/share/applications/" "$(PKGNAME).desktop"
 
