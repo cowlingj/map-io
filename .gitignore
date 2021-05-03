@@ -1,2 +1,3 @@
 man.*
 !man.md
+map-io*.gz
