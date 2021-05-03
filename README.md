@@ -1,10 +1,14 @@
 # Map I/O
 
+[![Arch build](https://github.com/cowlingj/map-io/actions/workflows/verify.yml/badge.svg)](https://github.com/cowlingj/map-io/actions/workflows/verify.yml)
+
 Restrict a chosen input to a single display
 
 ## Installation 
 
-Install map-io with `make install`
+Install map-io from source with `make build && make install`
+The following distros have packages available:
+- Arch (WIP), PKGBUILD
 
 ## Usage
 

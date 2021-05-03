@@ -1,6 +1,6 @@
 # Maintainer: Jonathan Cowling <09cowlingj@gmail.com>
 pkgname=map-io
-pkgver=1.0.3
+pkgver=1.0.4
 pkgrel=1
 epoch=
 pkgdesc="Restrict a chosen input to a single display"
@@ -15,6 +15,7 @@ depends=(
   "xorg-xinput"
 )
 makedepends=(
+  "git"
   "make"
   "ruby-ronn-ng"
   "gzip"
@@ -29,20 +30,19 @@ options=()
 install=
 changelog=
 source=(
-  "https://github.com/cowlingj/$pkgname/tarball/$pkgver"
+  "$pkgname-$pkgver::git+https://github.com/cowlingj/map-io#tag=$pkgver"
 )
 noextract=()
 validpgpkeys=()
-md5sums=('cd100b785537ace274863964b28d7270'
-         '2ec1983b316bf651accc3a870bde23b6'
-         '86bfa33509898a2bdb7619bbf2d91666')
+md5sums=('SKIP')
 
 build() {
   cd "$pkgname-$pkgver"
-  make build
+  make build 
 }
 
 package() {
+  cd "$pkgname-$pkgver"
   make install
 }
 
