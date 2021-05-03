@@ -11,4 +11,15 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - run: make arch-docker-build
-    - run: docker run -v $(pwd):/home/arch arch bash -c 'make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
+    - run: |
+        BUILDDIR=$(mktemp -d build.XXXXXXXXXX)
+        PKGDEST=$(mktemp -d pkg.XXXXXXXXXX)
+        SRCDEST=$(mktemp -d src.XXXXXXXXXX)
+    - run: |
+        docker run \
+          -v $(pwd):/home/arch \
+          -e BUILDDIR="$BUILDDIR" \
+          -e PKGDEST="$PKGDEST" \
+          -e SRCDEST="$SRCDEST" \
+          arch \
+          bash -c 'make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
