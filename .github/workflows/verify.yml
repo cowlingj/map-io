@@ -10,5 +10,5 @@ jobs:
         pkgbuild: [ PKGBUILD, git.PKGBUILD ]
     steps:
     - uses: actions/checkout@v1
-    - run: docker build -t arch .
+    - run: make arch-docker-build
     - run: docker run -v $(pwd):/home/arch/mount arch bash -c 'cd mount && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch && which map-io'
