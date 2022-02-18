@@ -1,0 +1,6 @@
+Package: map-io
+Version: 1
+Maintainer: Jonathan Cowling
+Architecture: all
+Description: Restrict a chosen input to a single display
+Depends: xrandr, xinput, yad

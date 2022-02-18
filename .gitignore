@@ -1,3 +1,6 @@
 man.*
 !man.md
 map-io*.gz
+/build
+/dist
+/.flatpak-builder

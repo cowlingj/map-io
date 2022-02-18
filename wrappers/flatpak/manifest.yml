@@ -1,0 +1,25 @@
+app-id: local.jonathancowling.MapIO
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: map-io
+modules:
+  - name: map-io
+    buildsystem: simple
+    build-commands:
+      - make build
+      - make PKGDIR=$FLATPAK_DEST install
+      - install -D $FLATPAK_DEST/usr/bin/map-io $FLATPAK_DEST/bin/map-io
+    cleanup:
+      - /usr/bin/map-io
+    sources:
+      - type: file
+        path: ../../map-io.sh
+      - type: file
+        path: ../../Makefile
+      - type: file
+        path: ../../man.md
+      - type: file
+        path: ../../map-io.desktop
+finish-args:
+  - --socket=x11
