@@ -35,12 +35,19 @@ flatpak-install:
 flatpak-run:
 	flatpak run local.jonathancowling.MapIO
 
+deb-docker-build:
+	docker build -t deb wrappers/debian/ 
+
 deb-build:
 	rm -r build dist
-	mkdir build dist
-	make PKGDIR=build/map-io/DEBIAN build install
+	mkdir -p build dist build/map-io/DEBIAN/
+	make PKGDIR=build/map-io build install
 	cp wrappers/debian/control build/map-io/DEBIAN/
 	dpkg -b build/map-io dist/map-io.deb
+
+deb-install:
+	- sudo dpkg -i
+	apt-get install -f -y
 
 run:
 	./map-io.sh

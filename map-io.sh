@@ -24,7 +24,7 @@ yad \
     "$(paste <(xinput list --id-only) <(xinput list --name-only) | sort -n |  tr '\n' '!' | head -c -1)" \
   --field \
     'Output:':CB \
-    "$(xrandr --listmonitors | awk -e 'NR != 1 { print $NF }' | sort | tr '\n' '!' | head -c -1)"  \
+    "$(xrandr --listmonitors | awk 'NR != 1 { print $NF }' | sort | tr '\n' '!' | head -c -1)"  \
   --field "Apply!gtk-ok:BTN" 'bash -c "map_io %1 %2"' \
   --field "Reset Input Device:BTN" 'bash -c "reset_mapping %1' \
   --button "Close" "0" > /dev/null

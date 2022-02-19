@@ -3,7 +3,7 @@ name: Arch build
 on: [push]
 
 jobs:
-  build:
+  arch:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -24,3 +24,21 @@ jobs:
           -e SRCDEST="$SRCDEST" \
           arch \
           bash -c 'cd mount && make ARCH_PKGBUILD=${{ matrix.pkgbuild }} arch-install && which map-io'
+  deb:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - run: make deb-docker-build
+    - run: |
+        echo BUILDDIR=/tmp/$(mktemp -d build.XXXXXXXXXX) >> $GITHUB_ENV
+        echo PKGDEST=/tmp/$(mktemp -d pkg.XXXXXXXXXX) >> $GITHUB_ENV
+        echo SRCDEST=/tmp/$(mktemp -d src.XXXXXXXXXX) >> $GITHUB_ENV
+    - run: |
+        docker run \
+          -v /tmp:/tmp \
+          -v $(pwd):/home/arch/mount \
+          -e BUILDDIR="$BUILDDIR" \
+          -e PKGDEST="$PKGDEST" \
+          -e SRCDEST="$SRCDEST" \
+          arch \
+          bash -c 'cd mount && make deb-install && which map-io'
